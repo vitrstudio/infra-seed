@@ -24,9 +24,9 @@ variable "instance_type" {
   description = "Instance type"
 }
 
-variable "key_name" {
+variable "key_pair" {
+  description = "Key pair name for EC2 instances"
   type        = string
-  description = "SSH key name for EC2 access"
 }
 
 variable "ssm_profile_name" {

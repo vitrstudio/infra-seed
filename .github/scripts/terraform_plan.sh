@@ -11,4 +11,5 @@ terraform plan -out=tfplan \
   -var "db_user=${DB_USERNAME}" \
   -var "db_password=${DB_PASSWORD}" \
   -var "hosted_zone_id=${HOSTED_ZONE_ID}" \
-  -var "certificate_arn=${CERTIFICATE_ARN}"
+  -var "certificate_arn=${CERTIFICATE_ARN}" \
+  -var "key_pair=${KEY_PAIR}"

@@ -44,3 +44,8 @@ variable "ssm_role_name" {
     description = "The name of the SSM role for EC2 instances"
     type        = string
 }
+
+variable "key_pair" {
+    description = "Key pair name for EC2 instances"
+    type        = string
+}

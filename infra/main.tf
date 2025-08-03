@@ -51,6 +51,7 @@ module "ec2_api" {
   vpc_id       = module.vpc.vpc_id
   subnet_id    = module.vpc.public_subnet_id
   ami_id       = var.ami_id
+  key_pair = var.key_pair
   deployment_s3_bucket_name = module.deployment_s3.bucket_name
   ssm_profile_name = module.iam_ssm.ssm_profile_name
   ssm_role_name    = module.iam_ssm.ssm_role_name
@@ -74,7 +75,7 @@ module "ec2_bastion" {
   vpc_id               = module.vpc.vpc_id
   public_subnet_id     = module.vpc.public_subnet_id
   ami_id               = var.ami_id
-  key_name             = var.project_name
+  key_pair             = var.key_pair
   ssm_profile_name     = module.iam_ssm.ssm_profile_name
 }
 

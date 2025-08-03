@@ -12,7 +12,8 @@ Three Terraform states are used, they are stored in the vitr-terraform-states S3
 1. Deploy the hosted zone (just once, after that it will be persisted)
 2. Get the NS records from AWS and set them in your domain registrar
 3. Deploy the ACM certificates (just once, after that it will be persisted)
-4. Commit and push to deploy the modules
+4. Fill environment variables
+6. Commit and push to deploy the modules
 
 ## Infrastructure description
 

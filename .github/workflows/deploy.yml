@@ -19,6 +19,7 @@ jobs:
       DB_USERNAME: X #Name of the database admin (use lowercase, e.g. bookstoredbadmin)
       GITHUB_USER: X #Your GitHub username
       DOMAIN_NAME: X #Domain name for your project (e.g. bookstore.com)
+      KEY_PAIR: X #Name of the key pair to use for the EC2 instance (e.g. bookstore for bookstore.pem)
 
     steps:
       - name: Checkout repo

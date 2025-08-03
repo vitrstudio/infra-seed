@@ -48,3 +48,8 @@ variable "certificate_arn" {
     description = "The arn of the acm certificate for the domain"
     type        = string
 }
+
+variable "key_pair" {
+  description = "Key pair name for EC2 instances"
+  type        = string
+}
