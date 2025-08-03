@@ -1,0 +1,48 @@
+name: Deploy Terraform Infrastructure
+
+on:
+  #Remove comment in order to initiate pipeline on every push to main branch
+  #push:
+    #branches: [main]
+
+jobs:
+  terraform:
+    runs-on: ubuntu-latest
+    env:
+      AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+      AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+      AWS_DEFAULT_REGION: us-east-1
+      PROJECT_ID: X #Short unique id (e.g. a9191e2a)
+      AMI_ID: X #Ami for the EC2 (default ami-01f3a9a49e4032afb)
+      PROJECT_NAME: X #Name of your project (use kebab-case, e.g. bookstore-app)
+      DB_NAME: X #Name of your database (use lowercase, e.g. bookstoredb)
+      DB_USERNAME: X #Name of the database admin (use lowercase, e.g. bookstoredbadmin)
+      GITHUB_USER: X #Your GitHub username
+      DOMAIN_NAME: X #Domain name for your project (e.g. bookstore.com)
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      - name: Install terraform
+        uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: 1.8.5
+
+      - name: Retrieve environment variables from SSM
+        run: .github/scripts/get_ssm_variables.sh
+
+      - name: Retrieve or generate DB password
+        run: .github/scripts/get_or_create_db_password.sh
+
+      - name: Terraform init
+        run: ../.github/scripts/terraform_init.sh
+        working-directory: infra
+
+      - name: Terraform plan
+        run: ../.github/scripts/terraform_plan.sh
+        working-directory: infra
+
+      - name: Terraform apply
+        run: terraform apply -auto-approve tfplan
+        working-directory: infra
