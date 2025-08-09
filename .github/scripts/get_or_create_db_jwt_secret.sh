@@ -6,7 +6,7 @@ if [ -z "$PROJECT_NAME" ]; then
   exit 1
 fi
 
-SECRET_NAME="/${PROJECT_NAME}/db_password"
+SECRET_NAME="/${PROJECT_NAME}/jwt_secret"
 
 PASSWORD=$(aws ssm get-parameter \
   --name "$SECRET_NAME" \
@@ -16,7 +16,7 @@ PASSWORD=$(aws ssm get-parameter \
   --output text 2>/dev/null || true)
 
 if [ -z "$PASSWORD" ]; then
-  PASSWORD=$(openssl rand -base64 32 | tr -dc 'A-Za-z0-9' | head -c 20)
+  PASSWORD=$(openssl rand -base64 64 | tr -dc 'A-Za-z0-9' | head -c 60)
   aws ssm put-parameter \
     --name "$SECRET_NAME" \
     --value "$PASSWORD" \

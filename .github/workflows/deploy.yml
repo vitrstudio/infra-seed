@@ -36,6 +36,9 @@ jobs:
       - name: Retrieve or generate DB password
         run: .github/scripts/get_or_create_db_password.sh
 
+      - name: Retrieve or generate JWT secret
+        run: .github/scripts/get_or_create_jwt_secret.sh
+
       - name: Terraform init
         run: ../.github/scripts/terraform_init.sh
         working-directory: infra
