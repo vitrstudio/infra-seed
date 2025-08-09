@@ -23,3 +23,5 @@ if [ -z "$PASSWORD" ]; then
     --type "SecureString" \
     --region "$AWS_DEFAULT_REGION"
 fi
+
+echo "DB_PASSWORD=$PASSWORD" >> $GITHUB_ENV

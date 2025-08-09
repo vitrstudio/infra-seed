@@ -1,9 +1,10 @@
 name: Deploy Terraform Infrastructure
 
 on:
-  #Remove comment in order to initiate pipeline on every push to main branch
-  #push:
-    #branches: [main]
+  # Remove comment to auto-run on every push to main
+  # push:
+  #   branches: [main]
+  workflow_dispatch:  # manual trigger only
 
 jobs:
   terraform:
