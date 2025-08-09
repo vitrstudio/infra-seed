@@ -9,6 +9,9 @@ Three Terraform states are used, they are stored in the vitr-terraform-states S3
 
 ## To deploy the whole infrastructure
 
+**Disclaimer:** If the domain was registered in AWS, you can skip steps 1 and 2, but you will 
+need to set the SSM variable /blog/hosted_zone_id manually in the AWS SSM Parameter Store.
+
 1. Deploy the hosted zone (just once, after that it will be persisted)
 2. Get the NS records from AWS and set them in your domain registrar
 3. Deploy the ACM certificates (just once, after that it will be persisted)
